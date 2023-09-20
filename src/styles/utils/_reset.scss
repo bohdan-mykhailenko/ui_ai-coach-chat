@@ -1,3 +1,15 @@
+// disable side scrool
+html,
+div {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  background-color: var(--background);
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}
+
 * {
   margin: 0;
   box-sizing: border-box;

@@ -1,30 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Drawer, Grid, Icon, Typography, useTheme } from '@mui/material';
+import {
+  Drawer,
+  Grid,
+  Icon,
+  IconButton,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import HeartHandShakeIcon from '../../icons/HeartHandShakeIcon';
 
 export const Sidebar: React.FC = () => {
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleOpenSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+
+  const handleCloseSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+  if (isSmallScreen && !isSidebarOpen) {
+    return (
+      <IconButton onClick={handleOpenSidebar}>
+        <MenuIcon />
+      </IconButton>
+    );
+  }
 
   return (
     <Drawer
       variant="permanent"
       anchor="left"
+      open={isSidebarOpen && isSmallScreen}
+      onClose={handleToggleSidebar}
       sx={{
         '& .MuiPaper-root': {
           padding: '55px 45px',
 
           height: '100vh',
+          position: 'relative',
 
           display: 'flex',
           alignItems: 'center',
 
           backgroundColor: theme.palette.blue.main,
-
           border: 'none',
+
+          '@media (max-width: 900px)': {
+            padding: '50px 20px',
+          },
+
+          '@media (max-width: 600px)': {
+            padding: '50px 5px',
+          },
+
+          '@media (max-width: 450px)': {
+            padding: '100px 5px',
+            width: '100vw',
+          },
         },
       }}
     >
+      {isSmallScreen && (
+        <IconButton
+          onClick={handleCloseSidebar}
+          sx={{
+            position: 'absolute',
+            left: '0',
+            top: 0,
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      )}
       <Typography
         sx={{
           color: theme.palette.black.main,
@@ -36,10 +95,30 @@ export const Sidebar: React.FC = () => {
         Agile
       </Typography>
       <Link to="https://openai.com/">
-        <Grid container>
+        <Grid
+          container
+          alignItems="center"
+          sx={{
+            '@media (max-width: 600px)': {
+              flexDirection: 'column',
+            },
+          }}
+        >
           <Icon
             sx={{
               marginRight: '12px',
+              width: '25px',
+              height: '25px',
+
+              '@media (max-width: 600px)': {
+                marginRight: '6px',
+                width: '20px',
+              },
+
+              '@media (max-width: 450px)': {
+                marginBottom: '6px',
+                width: '18px',
+              },
             }}
           >
             <HeartHandShakeIcon />
