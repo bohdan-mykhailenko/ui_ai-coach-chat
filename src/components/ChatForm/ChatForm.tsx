@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {
-  Button,
-  FormGroup,
-  Grid,
-  Icon,
-  IconButton,
-  TextField,
-  useTheme,
-} from '@mui/material';
+import { Grid, IconButton, TextField, useTheme } from '@mui/material';
 import { SendIcon } from '../../icons/SendIcon';
+import { addMessage } from '../../reducers/messagesSlice';
+import { Message } from '../../types/Message';
+import { useDispatch } from 'react-redux';
 
 export const ChatForm: React.FC = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [inputText, setInputText] = useState('');
 
@@ -23,14 +19,22 @@ export const ChatForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/generate-story',
-        { userStoryInput: inputText },
-      );
+      // const response = await axios.post(
+      //   'http://localhost:5000/api/generate-story',
+      //   { userStoryInput: inputText },
+      // );
 
-      console.log(response.data.generatedStory);
+      // console.log(response.data.generatedStory);
+      const userMessage: Message = {
+        role: 'user',
+        content: inputText,
+      };
+
+      dispatch(addMessage(userMessage));
     } catch (error) {
       console.error('Error sending request:', error);
+    } finally {
+      setInputText('');
     }
   };
 
@@ -40,11 +44,16 @@ export const ChatForm: React.FC = () => {
         container
         spacing={2}
         alignItems="center"
-        sx={{
-          width: '1000px',
-        }}
+        width="65%"
+        margin="0 auto"
       >
-        <Grid item xs={10} sm={10} md={11}>
+        <Grid
+          item
+          sx={{
+            flex: 1,
+            overflowX: 'auto',
+          }}
+        >
           <TextField
             type="text"
             value={inputText}
@@ -83,7 +92,7 @@ export const ChatForm: React.FC = () => {
             }}
           />
         </Grid>
-        <Grid item xs={2} sm={2} md={1}>
+        <Grid item>
           <IconButton type="submit">
             <SendIcon />
           </IconButton>

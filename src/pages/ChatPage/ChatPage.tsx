@@ -2,7 +2,6 @@ import { Grid, useTheme } from '@mui/material';
 import React from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { ChatContent } from '../../components/ChatContent/ChatContent';
-import styles from './ChatPage.module.scss';
 
 export const ChatPage: React.FC = () => {
   const theme = useTheme();
@@ -14,11 +13,17 @@ export const ChatPage: React.FC = () => {
         backgroundColor: theme.palette.blue.main,
       }}
     >
-      <Grid item xs={2}>
+      <Grid item>
         <Sidebar />
       </Grid>
 
-      <Grid item xs={10}>
+      <Grid
+        item
+        sx={{
+          flex: 1,
+          overflowX: 'auto',
+        }}
+      >
         <ChatContent />
       </Grid>
     </Grid>

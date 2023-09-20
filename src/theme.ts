@@ -6,12 +6,32 @@ export const theme = createTheme({
     fontWeightBold: 700,
     h1: {
       fontSize: '24px',
+
+      '@media (max-width: 600px)': {
+        fontSize: '20px',
+      },
+
+      '@media (max-width: 450px)': {
+        fontSize: '20px',
+      },
     },
     h4: {
       fontSize: '18px',
+
+      '@media (max-width: 600px)': {
+        fontSize: '16px',
+      },
+
+      '@media (max-width: 450px)': {
+        fontSize: '14px',
+      },
     },
   },
+
   palette: {
+    accent: {
+      main: '#FEE2C5',
+    },
     primary: {
       main: '#000A10',
       light: '#aaa',
