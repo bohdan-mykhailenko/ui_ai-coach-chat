@@ -13,7 +13,19 @@ export const ChatHistory: React.FC = () => {
     <Grid>
       {isEmptyHistory ? (
         <Grid>
-          <Typography variant="h3" color={theme.palette.gray.dark}>
+          <Typography
+            variant="h3"
+            color={theme.palette.gray.dark}
+            sx={{
+              [theme.breakpoints.down('sm')]: {
+                fontSize: '18px',
+              },
+
+              [theme.breakpoints.down('xs')]: {
+                fontSize: '16px',
+              },
+            }}
+          >
             Start conversation with our with Agile Coach!
           </Typography>
         </Grid>
