@@ -57,15 +57,15 @@ export const Sidebar: React.FC = () => {
           backgroundColor: theme.palette.blue.main,
           border: 'none',
 
-          '@media (max-width: 900px)': {
+          [theme.breakpoints.down('md')]: {
             padding: '50px 20px',
           },
 
-          '@media (max-width: 600px)': {
-            padding: '50px 5px',
+          [theme.breakpoints.down('sm')]: {
+            padding: '50px 15px',
           },
 
-          '@media (max-width: 450px)': {
+          [theme.breakpoints.down('xs')]: {
             padding: '100px 5px',
             width: '100vw',
           },
@@ -85,12 +85,18 @@ export const Sidebar: React.FC = () => {
         </IconButton>
       )}
       <Typography
-        sx={{
-          color: theme.palette.black.main,
-        }}
-        fontWeight="bold"
         variant="h1"
         marginBottom={'70px'}
+        sx={{
+          color: theme.palette.black.main,
+          [theme.breakpoints.down('sm')]: {
+            fontSize: '20px',
+          },
+
+          [theme.breakpoints.down('xs')]: {
+            fontSize: '27px',
+          },
+        }}
       >
         Agile
       </Typography>
@@ -99,7 +105,7 @@ export const Sidebar: React.FC = () => {
           container
           alignItems="center"
           sx={{
-            '@media (max-width: 600px)': {
+            [theme.breakpoints.down('sm')]: {
               flexDirection: 'column',
             },
           }}
@@ -110,14 +116,14 @@ export const Sidebar: React.FC = () => {
               width: '25px',
               height: '25px',
 
-              '@media (max-width: 600px)': {
+              [theme.breakpoints.down('sm')]: {
                 marginRight: '6px',
                 width: '20px',
               },
 
-              '@media (max-width: 450px)': {
+              [theme.breakpoints.down('xs')]: {
                 marginBottom: '6px',
-                width: '18px',
+                width: '25px',
               },
             }}
           >
@@ -125,11 +131,18 @@ export const Sidebar: React.FC = () => {
           </Icon>
 
           <Typography
+            variant="h4"
             sx={{
               color: theme.palette.black.main,
+
+              [theme.breakpoints.down('sm')]: {
+                fontSize: '16px',
+              },
+
+              [theme.breakpoints.down('xs')]: {
+                fontSize: '20px',
+              },
             }}
-            fontWeight="bold"
-            variant="h4"
           >
             AI Agile Coach
           </Typography>

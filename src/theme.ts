@@ -6,38 +6,25 @@ export const theme = createTheme({
     fontWeightBold: 700,
     h1: {
       fontSize: '24px',
-
-      '@media (max-width: 600px)': {
-        fontSize: '20px',
-      },
-
-      '@media (max-width: 450px)': {
-        fontSize: '20px',
-      },
+      fontWeight: 700,
+      lineHeight: '150%',
     },
     h3: {
       fontSize: '20px',
       fontWeight: 700,
       textAlign: 'center',
-
-      '@media (max-width: 600px)': {
-        fontSize: '18px',
-      },
-
-      '@media (max-width: 450px)': {
-        fontSize: '16px',
-      },
+      lineHeight: '150%',
     },
     h4: {
       fontSize: '18px',
-
-      '@media (max-width: 600px)': {
-        fontSize: '16px',
-      },
-
-      '@media (max-width: 450px)': {
-        fontSize: '14px',
-      },
+      fontWeight: 700,
+      lineHeight: '150%',
+    },
+    body1: {
+      fontSize: '16px',
+      fontWeight: '700',
+      lineHeight: '150%',
+      whiteSpace: 'pre-line',
     },
   },
 
@@ -65,6 +52,16 @@ export const theme = createTheme({
     },
     white: {
       main: '#FAFDFE',
+    },
+  },
+
+  breakpoints: {
+    values: {
+      xs: 450,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });

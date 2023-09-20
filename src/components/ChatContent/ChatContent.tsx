@@ -18,16 +18,14 @@ export const ChatContent: React.FC = () => {
         backgroundColor: theme.palette.secondary.main,
         borderRadius: '40px 0px 0px 40px',
 
-        '@media (max-width: 900px)': {
+        [theme.breakpoints.down('md')]: {
           padding: '30px',
         },
 
-        '@media (max-width: 600px)': {
-          padding: '20px',
-        },
+        [theme.breakpoints.down('sm')]: {
+          padding: '20px 10px',
 
-        '@media (max-width: 450px)': {
-          padding: '10px',
+          borderRadius: '20px 0px 0px 20px',
         },
       }}
     >
