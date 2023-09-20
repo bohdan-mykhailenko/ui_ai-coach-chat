@@ -25,16 +25,18 @@ export const ChatForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      // const response = await axios.post(
-      //   'http://localhost:5000/api/generate-story',
-      //   { userStoryInput: inputText },
-      // );
-
-      // console.log(response.data.generatedStory);
       const userMessage: Message = {
         role: 'udser',
         content: inputText,
       };
+      dispatch(addMessage(userMessage));
+
+      const response = await axios.post(
+        'http://localhost:5000/api/generate-story',
+        { userStoryInput: inputText },
+      );
+
+      console.log(response.data.generatedStory);
 
       dispatch(addMessage(userMessage));
     } catch (error) {
