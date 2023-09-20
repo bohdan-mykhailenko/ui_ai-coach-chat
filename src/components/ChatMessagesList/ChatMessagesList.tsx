@@ -3,11 +3,11 @@ import { Message } from '../../types/Message';
 import { ChatMessageitem } from '../ChatMessageItem';
 import { List, ListItem } from '@mui/material';
 
-interface ChatMessageitemsListProps {
+interface ChatMessagesListProps {
   messages: Message[];
 }
 
-const ChatMessageitemsList: React.FC<ChatMessageitemsListProps> = ({
+export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   messages,
 }) => {
   return (
@@ -26,5 +26,3 @@ const ChatMessageitemsList: React.FC<ChatMessageitemsListProps> = ({
     </List>
   );
 };
-
-export default ChatMessageitemsList;

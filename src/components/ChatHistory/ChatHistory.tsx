@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectMessages } from '../../selectors/messagesSelector';
-import ChatMessageitemsList from '../ChatMessagesList/ChatMessagesList';
 import { Grid, Typography, useTheme } from '@mui/material';
+import { ChatMessagesList } from '../ChatMessagesList';
 
 export const ChatHistory: React.FC = () => {
   const theme = useTheme();
@@ -30,7 +30,7 @@ export const ChatHistory: React.FC = () => {
           </Typography>
         </Grid>
       ) : (
-        <ChatMessageitemsList messages={messages} />
+        <ChatMessagesList messages={messages} />
       )}
     </Grid>
   );
