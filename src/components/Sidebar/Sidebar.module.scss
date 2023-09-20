@@ -1,0 +1,39 @@
+@import '../../styles/main.scss';
+
+.sidebar {
+  padding: 55px 45px;
+
+  height: 100vh;
+  width: 270px;
+
+  &__title {
+    margin-bottom: 70px;
+
+    font-weight: 700;
+    font-size: 24px;
+    color: $black;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-title {
+      color: $black;
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+  &__icon {
+    margin-right: 12px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      fill: transparent;
+      stroke: $black;
+    }
+  }
+}
