@@ -23,6 +23,15 @@ export const ChatMessageitem: React.FC<ChatMessageitemProps> = ({
         borderRadius: '40px',
         backgroundColor: selectedColor,
         position: 'relative',
+
+        [theme.breakpoints.down('sm')]: {
+          borderRadius: '30px',
+          padding: '15px 20px',
+        },
+
+        [theme.breakpoints.up('xs')]: {
+          padding: '15px 20px',
+        },
       }}
     >
       <Typography

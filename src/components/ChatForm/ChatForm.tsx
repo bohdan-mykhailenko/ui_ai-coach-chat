@@ -26,7 +26,7 @@ export const ChatForm: React.FC = () => {
 
       // console.log(response.data.generatedStory);
       const userMessage: Message = {
-        role: 'user',
+        role: 'udser',
         content: inputText,
       };
 
@@ -44,8 +44,22 @@ export const ChatForm: React.FC = () => {
         container
         spacing={2}
         alignItems="center"
-        width="65%"
         margin="0 auto"
+        sx={{
+          width: '70%',
+
+          '@media (max-width: 900px)': {
+            width: '80%',
+          },
+
+          '@media (max-width: 767px)': {
+            width: '100%',
+          },
+
+          '@media (max-width: 600px)': {
+            width: '100%',
+          },
+        }}
       >
         <Grid
           item

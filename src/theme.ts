@@ -15,6 +15,19 @@ export const theme = createTheme({
         fontSize: '20px',
       },
     },
+    h3: {
+      fontSize: '20px',
+      fontWeight: 700,
+      textAlign: 'center',
+
+      '@media (max-width: 600px)': {
+        fontSize: '18px',
+      },
+
+      '@media (max-width: 450px)': {
+        fontSize: '16px',
+      },
+    },
     h4: {
       fontSize: '18px',
 

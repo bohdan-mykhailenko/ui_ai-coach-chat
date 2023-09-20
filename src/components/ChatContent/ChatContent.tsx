@@ -17,6 +17,18 @@ export const ChatContent: React.FC = () => {
         height: 'calc(100vh - 84px)',
         backgroundColor: theme.palette.secondary.main,
         borderRadius: '40px 0px 0px 40px',
+
+        '@media (max-width: 900px)': {
+          padding: '30px',
+        },
+
+        '@media (max-width: 600px)': {
+          padding: '20px',
+        },
+
+        '@media (max-width: 450px)': {
+          padding: '10px',
+        },
       }}
     >
       <Grid

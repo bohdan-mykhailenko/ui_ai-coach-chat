@@ -31,7 +31,6 @@ export const Sidebar: React.FC = () => {
   };
 
   if (isSmallScreen && !isSidebarOpen) {
-    // Render the sidebar toggle button for small screens
     return (
       <IconButton onClick={handleOpenSidebar}>
         <MenuIcon />
@@ -58,28 +57,33 @@ export const Sidebar: React.FC = () => {
           backgroundColor: theme.palette.blue.main,
           border: 'none',
 
+          '@media (max-width: 900px)': {
+            padding: '50px 20px',
+          },
+
           '@media (max-width: 600px)': {
-            padding: '50px 10px',
-            width: '100vw',
+            padding: '50px 5px',
           },
 
           '@media (max-width: 450px)': {
-            padding: '20px 5px',
+            padding: '100px 5px',
+            width: '100vw',
           },
         },
       }}
     >
-      <IconButton
-        onClick={handleCloseSidebar}
-        sx={{
-          position: 'absolute',
-          left: '0',
-          top: 0,
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-
+      {isSmallScreen && (
+        <IconButton
+          onClick={handleCloseSidebar}
+          sx={{
+            position: 'absolute',
+            left: '0',
+            top: 0,
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      )}
       <Typography
         sx={{
           color: theme.palette.black.main,
@@ -95,7 +99,7 @@ export const Sidebar: React.FC = () => {
           container
           alignItems="center"
           sx={{
-            '@media (max-width: 450px)': {
+            '@media (max-width: 600px)': {
               flexDirection: 'column',
             },
           }}
