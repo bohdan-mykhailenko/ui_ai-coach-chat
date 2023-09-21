@@ -11,6 +11,10 @@ export const ChatMessageitem: React.FC<ChatMessageitemProps> = ({
   message,
 }) => {
   const theme = useTheme();
+  const normalizedMessageText = message.content.replace(
+    /([A-Za-z]{10})/g,
+    '$1\u200B',
+  ); // add a zero-width space after long row of letters
   const isUserMessage = message.role === 'user';
   const selectedColor = isUserMessage
     ? theme.palette.accent.main
@@ -20,37 +24,43 @@ export const ChatMessageitem: React.FC<ChatMessageitemProps> = ({
     <Grid
       sx={{
         padding: '25px 44px',
+
         borderRadius: '40px',
         backgroundColor: selectedColor,
         position: 'relative',
 
         [theme.breakpoints.down('sm')]: {
-          borderRadius: '30px',
-          padding: '15px 20px',
+          padding: '10px 20px',
+          borderRadius: '25px',
         },
 
-        [theme.breakpoints.up('xs')]: {
-          padding: '15px 20px',
+        [theme.breakpoints.down('xs')]: {
+          borderRadius: '20px',
         },
       }}
     >
       <Typography
+        variant="body1"
         sx={{
-          fontSize: '16px',
-          fontWeight: '700',
           color: theme.palette.black.main,
-          lineHeight: '150%',
+
+          [theme.breakpoints.down('xs')]: {
+            fontSize: '14px',
+          },
         }}
       >
-        {message.content}
+        {normalizedMessageText}
       </Typography>
       <Icon
         sx={{
-          zIndex: '100',
           position: 'absolute',
           left: isUserMessage ? 'auto' : '-10px',
           right: isUserMessage ? '-10px' : 'auto',
           transform: isUserMessage ? 'rotate(115deg)' : 'rotate(-15deg)',
+
+          [theme.breakpoints.down('sm')]: {
+            display: 'none',
+          },
         }}
       >
         <MessageTailIcon color={selectedColor} isUserMessage={isUserMessage} />
