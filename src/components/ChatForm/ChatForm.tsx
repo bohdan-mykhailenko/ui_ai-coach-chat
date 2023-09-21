@@ -10,39 +10,56 @@ import {
 import { SendIcon } from '../../icons/SendIcon';
 import { addMessage } from '../../reducers/messagesSlice';
 import { Message } from '../../types/Message';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { socketService } from '../../services/socketService';
+import { selectMessages } from '../../selectors/messagesSelector';
 
 export const ChatForm: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [inputText, setInputText] = useState('');
 
+  const messages = useSelector(selectMessages);
+
+  const getLastMessageId = () => {
+    return messages[messages.length - 1]?.id || 0;
+  };
+
+  const isMessageInStore = (id: number | undefined) => {
+    return messages.some((message) => message.id === id);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    try {
-      // const response = await axios.post(
-      //   'http://localhost:5000/api/generate-story',
-      //   { userStoryInput: inputText },
-      // );
-
-      // console.log(response.data.generatedStory);
-      const userMessage: Message = {
-        role: 'udser',
-        content: inputText,
-      };
-
-      dispatch(addMessage(userMessage));
-    } catch (error) {
-      console.error('Error sending request:', error);
-    } finally {
-      setInputText('');
+    if (inputText.trim() === '') {
+      return;
     }
+
+    const messageDto = {
+      role: 'user',
+      content: inputText,
+    };
+
+    const newUserMessage = {
+      id: getLastMessageId() + 1,
+      ...messageDto,
+    };
+
+    dispatch(addMessage(newUserMessage));
+
+    socketService.sendMessageToOpenAI(messageDto);
+
+    setInputText('');
   };
+
+  socketService.onOpenAIResponse((data) => {
+    dispatch(addMessage(data));
+  });
 
   return (
     <form onSubmit={handleSubmit}>

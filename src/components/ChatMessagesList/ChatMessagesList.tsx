@@ -14,7 +14,7 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
     <List>
       {messages.map((message) => (
         <ListItem
-          key={message.content}
+          key={message.id}
           sx={{
             display: 'flex',
             justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',

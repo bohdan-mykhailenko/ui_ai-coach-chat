@@ -7,6 +7,7 @@ import { theme } from './theme';
 import './styles/main.scss';
 import store from './store';
 import { Provider } from 'react-redux';
+import { QueryProvider } from './providers/QueryProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </Provider>
+      <QueryProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </QueryProvider>
     </Router>
   </React.StrictMode>,
 );
