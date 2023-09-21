@@ -1,4 +1,4 @@
-#  Inventory Application
+#  AgileGPT Application
 
 ## Overview
 * [**Demo Link**](https://bohdan-mykhailenko.github.io/ai_coach/)
@@ -7,11 +7,11 @@
 
 ## Description
 
-This project is a real-time chat to communicate with an Open AI model in Agile assistant role.
+This project is a real-time chat to communicate with an Open AI model in an Agile assistant role.
 
 ## Features
 
-- **Real-time chatting**: Allow users to ask the Open AI model and gert quick responses.
+- **Real-time chatting**: Allow users to ask the Open AI model and get quick responses.
 - **Adaptability**: Full adaptability for different screen resolutions.
   
 ## Technologies
