@@ -40,18 +40,29 @@ This project is a real-time chat to communicate with an Open AI model in an Agil
 ![image](https://github.com/bohdan-mykhailenko/ai_coach/assets/76702178/fde5c07e-1718-41c5-817b-ec4bfc380f6a)
 
 
-## How to start
+## Getting Started
 
 **To get started with the app, follow these steps:**
 
 1.  Clone the repo:
-    `https://github.com/<username>/ai_coach.git`
     
-3.  Navigate to the project dir:
-     `cd ai_coach`
+```shell
+  https://github.com/<username>/ai_coach.git
+```
+    
+2.  Navigate to the project dir:
+   
+```shell 
+  cd ai_coach
+```
 
-4.  Install dependencies:
-    `npm install`
+3.  Install dependencies:
     
- 5.  Start the server:
-    `npm start`
+```shell
+  npm install
+```
+    
+ 4.  Start the server:
+```shell
+  npm start
+```
