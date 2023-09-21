@@ -11,10 +11,7 @@ export const ChatMessageitem: React.FC<ChatMessageitemProps> = ({
   message,
 }) => {
   const theme = useTheme();
-  const normalizedMessageText = message.content.replace(
-    /([A-Za-z]{10})/g,
-    '$1\u200B',
-  ); // add a zero-width space after long row of letters
+  const normalizedMessageText = message.content;
   const isUserMessage = message.role === 'user';
   const selectedColor = isUserMessage
     ? theme.palette.accent.main
