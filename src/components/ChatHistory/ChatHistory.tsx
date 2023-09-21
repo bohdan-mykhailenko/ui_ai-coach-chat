@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMessages } from '../../selectors/messagesSelector';
 import { Grid, Typography, useTheme } from '@mui/material';
@@ -16,11 +16,22 @@ export const ChatHistory: React.FC = () => {
   const messages = useSelector(selectMessages);
   const isEmptyHistory = messages.length === 0;
 
+  const [hasFetchedMessages, setHasFetchedMessages] = useState(false);
+
   const { error, isLoading } = useQuery('messages', getAllMessages, {
+    enabled: !hasFetchedMessages,
     onSuccess: (data) => {
       dispatch(setMessages(data));
+      setHasFetchedMessages(true);
     },
   });
+  const chatListRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatListRef.current) {
+      chatListRef.current.scrollIntoView(false);
+    }
+  }, [messages]);
 
   if (isLoading) {
     return <Loader />;
@@ -31,7 +42,7 @@ export const ChatHistory: React.FC = () => {
   }
 
   return (
-    <Grid>
+    <Grid ref={chatListRef}>
       {isEmptyHistory ? (
         <Grid>
           <Typography

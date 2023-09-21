@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {
   Grid,
   IconButton,
@@ -9,25 +8,18 @@ import {
 } from '@mui/material';
 import { SendIcon } from '../../icons/SendIcon';
 import { addMessage } from '../../reducers/messagesSlice';
-import { Message } from '../../types/Message';
 import { useDispatch, useSelector } from 'react-redux';
 import { socketService } from '../../services/socketService';
 import { selectMessages } from '../../selectors/messagesSelector';
+import { getLastMessageId } from '../../helpers/getLastMessageId';
 
 export const ChatForm: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [inputText, setInputText] = useState('');
-
   const messages = useSelector(selectMessages);
 
-  const getLastMessageId = () => {
-    return messages[messages.length - 1]?.id || 0;
-  };
-
-  const isMessageInStore = (id: number | undefined) => {
-    return messages.some((message) => message.id === id);
-  };
+  const [isResponseLoading, setIsResponseLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -46,7 +38,7 @@ export const ChatForm: React.FC = () => {
     };
 
     const newUserMessage = {
-      id: getLastMessageId() + 1,
+      id: getLastMessageId(messages) + 1,
       ...messageDto,
     };
 
@@ -55,10 +47,13 @@ export const ChatForm: React.FC = () => {
     socketService.sendMessageToOpenAI(messageDto);
 
     setInputText('');
+
+    setIsResponseLoading(true);
   };
 
   socketService.onOpenAIResponse((data) => {
     dispatch(addMessage(data));
+    setIsResponseLoading(false);
   });
 
   return (
@@ -80,6 +75,38 @@ export const ChatForm: React.FC = () => {
         }}
       >
         <Grid
+          sx={{
+            width: '100%',
+          }}
+        >
+          <Typography
+            variant="h4"
+            color={
+              isResponseLoading
+                ? theme.palette.gray.main
+                : theme.palette.white.main
+            }
+            sx={{
+              marginBottom: '12px',
+
+              textAlign: 'left',
+
+              [theme.breakpoints.down('md')]: {
+                marginBottom: '9px',
+                fontSize: '16px',
+              },
+
+              [theme.breakpoints.down('xs')]: {
+                marginBottom: '6px',
+
+                fontSize: '14px',
+              },
+            }}
+          >
+            AgileGPT is writing...
+          </Typography>
+        </Grid>
+        <Grid
           item
           sx={{
             flex: 1,
@@ -99,26 +126,6 @@ export const ChatForm: React.FC = () => {
             },
           }}
         >
-          <Typography
-            variant="h4"
-            color={theme.palette.gray.main}
-            sx={{
-              marginBottom: '12px',
-
-              [theme.breakpoints.down('md')]: {
-                marginBottom: '9px',
-                fontSize: '16px',
-              },
-
-              [theme.breakpoints.down('xs')]: {
-                marginBottom: '6px',
-
-                fontSize: '14px',
-              },
-            }}
-          >
-            AgileGPT is writing...
-          </Typography>
           <TextField
             type="text"
             value={inputText}
