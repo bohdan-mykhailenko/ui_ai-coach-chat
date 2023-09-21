@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.6aa5c7af.css",
-    "main.js": "/static/js/main.551ea3af.js",
-    "index.html": "/index.html",
-    "main.6aa5c7af.css.map": "/static/css/main.6aa5c7af.css.map",
-    "main.551ea3af.js.map": "/static/js/main.551ea3af.js.map"
+    "main.css": "/ai_coach/static/css/main.6aa5c7af.css",
+    "main.js": "/ai_coach/static/js/main.551ea3af.js",
+    "index.html": "/ai_coach/index.html",
+    "main.6aa5c7af.css.map": "/ai_coach/static/css/main.6aa5c7af.css.map",
+    "main.551ea3af.js.map": "/ai_coach/static/js/main.551ea3af.js.map"
   },
   "entrypoints": [
     "static/css/main.6aa5c7af.css",
