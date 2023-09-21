@@ -24,7 +24,7 @@ const messagesSlice = createSlice({
     addMessage: (state, action: PayloadAction<Message>) => {
       const newMessage = action.payload;
 
-      const isMessageExist = state.messages.find(
+      const isMessageExist = state.messages.some(
         (message) => message.id === newMessage.id,
       );
 
