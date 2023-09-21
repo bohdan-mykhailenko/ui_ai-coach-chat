@@ -22,6 +22,7 @@ export const ChatHistory: React.FC = () => {
     enabled: !hasFetchedMessages,
     onSuccess: (data) => {
       dispatch(setMessages(data));
+
       setHasFetchedMessages(true);
     },
   });
@@ -39,8 +40,6 @@ export const ChatHistory: React.FC = () => {
   if (error) {
     return <ErrorResponse error={error as AxiosError} />;
   }
-
-  console.log(messages);
 
   return (
     <Grid ref={chatListRef}>
@@ -61,7 +60,7 @@ export const ChatHistory: React.FC = () => {
           Start conversation with our with Agile Coach!
         </Typography>
       ) : (
-        'List'
+        <ChatMessagesList messages={messages} />
       )}
     </Grid>
   );

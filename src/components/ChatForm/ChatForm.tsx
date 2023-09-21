@@ -12,47 +12,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import { socketService } from '../../services/socketService';
 import { selectMessages } from '../../selectors/messagesSelector';
 import { getLastMessageId } from '../../helpers/getLastMessageId';
+import { ErrorResponse } from '../ErrorResponse';
 
 export const ChatForm: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const [inputText, setInputText] = useState('');
   const messages = useSelector(selectMessages);
-
+  const [inputText, setInputText] = useState('');
   const [isResponseLoading, setIsResponseLoading] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (inputText.trim() === '') {
+    const normalizedInput = inputText.trim();
+
+    if (!normalizedInput) {
       return;
     }
 
-    const messageDto = {
+    const userMessageDto = {
       role: 'user',
       content: inputText,
     };
 
     const newUserMessage = {
       id: getLastMessageId(messages) + 1,
-      ...messageDto,
+      ...userMessageDto,
     };
 
     dispatch(addMessage(newUserMessage));
 
-    socketService.sendMessageToOpenAI(messageDto);
-
     setInputText('');
-
     setIsResponseLoading(true);
+
+    socketService.sendMessageToOpenAI(userMessageDto);
   };
 
   socketService.onOpenAIResponse((data) => {
+    if (data.error) {
+      return <ErrorResponse errorFromOpenAI={data.error} />;
+    }
+
     dispatch(addMessage(data));
+
     setIsResponseLoading(false);
   });
 

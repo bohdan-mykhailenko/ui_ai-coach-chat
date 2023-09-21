@@ -1,15 +1,11 @@
 import React from 'react';
-import { Box } from '@mui/material';
 
 interface MessageTailIconProps {
   color: string;
   isUserMessage: boolean;
 }
 
-export const MessageTailIcon: React.FC<MessageTailIconProps> = ({
-  color,
-  isUserMessage,
-}) => {
+export const MessageTailIcon: React.FC<MessageTailIconProps> = ({ color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

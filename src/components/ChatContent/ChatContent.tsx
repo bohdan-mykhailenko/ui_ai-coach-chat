@@ -20,7 +20,10 @@ export const ChatContent: React.FC = () => {
         borderRadius: '40px 0px 0px 40px',
 
         [theme.breakpoints.down('md')]: {
+          margin: '30px 0',
           padding: '30px',
+
+          height: 'calc(100vh - 60px)',
         },
 
         [theme.breakpoints.down('sm')]: {
