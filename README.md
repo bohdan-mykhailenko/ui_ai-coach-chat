@@ -42,7 +42,7 @@ This project is a real-time chat to communicate with an Open AI model in Agile a
 
 ## How to start
 
-**Follow these steps to start the app on your local machine:**
+**To get started with the app, follow these steps:**
 
 1.  Clone the repo:
     `https://github.com/<username>/ai_coach.git`
