@@ -3,10 +3,14 @@ import { AxiosError } from 'axios';
 import React from 'react';
 
 interface ErrorResponseProps {
-  error: AxiosError;
+  error?: AxiosError;
+  errorFromOpenAI?: string;
 }
 
-export const ErrorResponse: React.FC<ErrorResponseProps> = ({ error }) => {
+export const ErrorResponse: React.FC<ErrorResponseProps> = ({
+  error,
+  errorFromOpenAI,
+}) => {
   return (
     <Grid>
       <Typography
@@ -16,10 +20,12 @@ export const ErrorResponse: React.FC<ErrorResponseProps> = ({ error }) => {
           marginBottom: '20px',
         }}
       >
-        Error occured when fetching data
+        {errorFromOpenAI
+          ? 'Error with Open Ai'
+          : 'Error occured when fetching data'}
       </Typography>
       <Typography variant="h4" color="error">
-        {error.message}
+        {errorFromOpenAI ? errorFromOpenAI : error?.message}
       </Typography>
     </Grid>
   );

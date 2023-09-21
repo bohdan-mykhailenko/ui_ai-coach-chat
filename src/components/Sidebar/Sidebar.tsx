@@ -100,7 +100,7 @@ export const Sidebar: React.FC = () => {
       >
         Agile
       </Typography>
-      <Link to="https://openai.com/">
+      <Link to="#">
         <Grid
           container
           alignItems="center"

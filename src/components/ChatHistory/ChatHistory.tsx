@@ -14,18 +14,18 @@ export const ChatHistory: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const messages = useSelector(selectMessages);
-  const isEmptyHistory = messages.length === 0;
-
   const [hasFetchedMessages, setHasFetchedMessages] = useState(false);
+  const chatListRef = useRef<HTMLDivElement>(null);
+  const isEmptyHistory = messages.length === 0;
 
   const { error, isLoading } = useQuery('messages', getAllMessages, {
     enabled: !hasFetchedMessages,
     onSuccess: (data) => {
       dispatch(setMessages(data));
+
       setHasFetchedMessages(true);
     },
   });
-  const chatListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatListRef.current) {
@@ -44,23 +44,21 @@ export const ChatHistory: React.FC = () => {
   return (
     <Grid ref={chatListRef}>
       {isEmptyHistory ? (
-        <Grid>
-          <Typography
-            variant="h3"
-            color={theme.palette.gray.dark}
-            sx={{
-              [theme.breakpoints.down('sm')]: {
-                fontSize: '18px',
-              },
+        <Typography
+          variant="h3"
+          color={theme.palette.gray.dark}
+          sx={{
+            [theme.breakpoints.down('sm')]: {
+              fontSize: '18px',
+            },
 
-              [theme.breakpoints.down('xs')]: {
-                fontSize: '16px',
-              },
-            }}
-          >
-            Start conversation with our with Agile Coach!
-          </Typography>
-        </Grid>
+            [theme.breakpoints.down('xs')]: {
+              fontSize: '16px',
+            },
+          }}
+        >
+          Start conversation with our with Agile Coach!
+        </Typography>
       ) : (
         <ChatMessagesList messages={messages} />
       )}

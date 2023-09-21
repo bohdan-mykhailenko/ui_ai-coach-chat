@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { HashRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
-import { theme } from './theme';
+import { theme } from './theme/theme';
 import './styles/main.scss';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -14,14 +14,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
-      <QueryProvider>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
+    <QueryProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Router>
             <App />
-          </ThemeProvider>
-        </Provider>
-      </QueryProvider>
-    </Router>
+          </Router>
+        </ThemeProvider>
+      </Provider>
+    </QueryProvider>
   </React.StrictMode>,
 );
