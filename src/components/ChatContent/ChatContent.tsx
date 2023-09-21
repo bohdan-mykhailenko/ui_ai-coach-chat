@@ -11,7 +11,6 @@ export const ChatContent: React.FC = () => {
       container
       direction="column"
       display="grid"
-      alignItems="center"
       sx={{
         margin: '42px 0',
         padding: '40px',
