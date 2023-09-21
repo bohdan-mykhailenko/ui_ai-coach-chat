@@ -11,9 +11,11 @@ export const ChatContent: React.FC = () => {
       container
       direction="column"
       display="grid"
+      alignItems="center"
       sx={{
         margin: '42px 0',
         padding: '40px',
+
         height: 'calc(100vh - 84px)',
         backgroundColor: theme.palette.secondary.main,
         borderRadius: '40px 0px 0px 40px',

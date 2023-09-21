@@ -2,12 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMessages } from '../../selectors/messagesSelector';
 import { Grid, Typography, useTheme } from '@mui/material';
-import {
-  setIsResponseLoading,
-  setMessages,
-} from '../../reducers/messagesSlice';
+import { setMessages } from '../../reducers/messagesSlice';
 import { useQuery } from 'react-query';
 import { getAllMessages } from '../../api/messages';
+import { ChatMessagesList } from '../ChatMessagesList';
+import { Loader } from '../Loader';
+import { ErrorResponse } from '../ErrorResponse';
 import { AxiosError } from 'axios';
 
 export const ChatHistory: React.FC = () => {
@@ -23,13 +23,11 @@ export const ChatHistory: React.FC = () => {
   });
 
   if (isLoading) {
-    dispatch(setIsResponseLoading(true));
-  } else {
-    dispatch(setIsResponseLoading(false));
+    return <Loader />;
   }
 
   if (error) {
-    return <h3>Error</h3>;
+    return <ErrorResponse error={error as AxiosError} />;
   }
 
   return (

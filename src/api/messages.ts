@@ -7,6 +7,6 @@ export const getAllMessages = async () => {
 
     return response.data;
   } catch (error: any) {
-    throw new Error(`Failed to fetch messages: ${error.message}`);
+    throw new Error(error.message);
   }
 };

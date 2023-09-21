@@ -9,6 +9,12 @@ export const theme = createTheme({
       fontWeight: 700,
       lineHeight: '150%',
     },
+    h2: {
+      fontSize: '22px',
+      fontWeight: 800,
+      lineHeight: '150%',
+      textAlign: 'center',
+    },
     h3: {
       fontSize: '20px',
       fontWeight: 700,
@@ -19,6 +25,7 @@ export const theme = createTheme({
       fontSize: '18px',
       fontWeight: 700,
       lineHeight: '150%',
+      textAlign: 'center',
     },
     body1: {
       fontSize: '16px',
@@ -39,7 +46,6 @@ export const theme = createTheme({
     secondary: {
       main: '#F9F9F9',
     },
-
     blue: {
       main: '#D8E1ED',
     },

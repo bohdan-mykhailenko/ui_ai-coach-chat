@@ -2,7 +2,6 @@ import { Grid, useTheme } from '@mui/material';
 import React from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { ChatContent } from '../../components/ChatContent/ChatContent';
-import { SocketTest } from '../../components/SocketTest/Sockettest';
 
 export const ChatPage: React.FC = () => {
   const theme = useTheme();
