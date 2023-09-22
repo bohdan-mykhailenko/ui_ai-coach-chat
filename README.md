@@ -1,7 +1,7 @@
 #  AgileGPT Application
 
 ## Overview
-* [**Demo Link**](https://bohdan-mykhailenko.github.io/ai_coach/)
+* [**Demo Link**](https://bohdan-mykhailenko.github.io/ai_coach/#/)
 * [**Design Maket**](https://www.figma.com/file/T3hfRXuZNCXEmNpru6UpQ1/Agile-Test-task?node-id=2902%3A6872&mode=dev)
 * [**Backend Repo**](https://github.com/bohdan-mykhailenko/ai_coach_backend)
 
