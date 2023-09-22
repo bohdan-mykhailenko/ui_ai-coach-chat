@@ -67,6 +67,6 @@ This project is a real-time chat to communicate with an Open AI model in an Agil
   npm start
 ```
 
-5(optional).  Set your API URL:
+5. (optional) Set your API URL:
 * Open the `src/consts/api.ts` file and set your URL.
 *  Add environment variable `API_URL` with your URL.
